@@ -27,13 +27,13 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    deleteBook: async (parent, args, context) => {
+    deleteBook: async (parent, { bookId }, context) => {
       if (!context.user)
         throw new AuthenticationError("You need to be logged in!");
-
+      console.log(bookId);
       const user = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pull: { savedBooks: { bookId: args.id } } },
+        { $pull: { savedBooks: { bookId } } },
         { new: true, runValidators: true }
       );
       return user;
