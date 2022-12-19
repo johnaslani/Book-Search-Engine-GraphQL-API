@@ -13,8 +13,12 @@ const { AuthenticationError } = require("apollo-server-express");
 
 const resolvers = {
   Query: {
-    user: async () => {
+    user: async (parent, args, context) => {
       // return Book.find({});
+      console.log(context);
+      if (!context.user)
+        throw new AuthenticationError("You need to be logged in!");
+      return User.findOne({ _id: context.user._id });
     },
   },
   Mutation: {
@@ -29,7 +33,7 @@ const resolvers = {
 
       const user = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pull: { savedBooks: args.id } },
+        { $pull: { savedBooks: { bookId: args.id } } },
         { new: true, runValidators: true }
       );
       return user;
@@ -58,18 +62,18 @@ const resolvers = {
       return { token, user };
     },
 
-    createSaved: async (parent, args) => {
-      const saved = await Saved.create(args);
-      return saved;
-    },
-    createComment: async (parent, { _id, bookNum }) => {
-      const comment = await Saved.findOneAndUpdate(
-        { _id },
-        { $inc: { [`book${bookNum}_comments`]: 1 } },
-        { new: true }
-      );
-      return comment;
-    },
+    // createSaved: async (parent, args) => {
+    //   const saved = await Saved.create(args);
+    //   return saved;
+    // },
+    // createComment: async (parent, { _id, bookNum }) => {
+    //   const comment = await Saved.findOneAndUpdate(
+    //     { _id },
+    //     { $inc: { [`book${bookNum}_comments`]: 1 } },
+    //     { new: true }
+    //   );
+    //   return comment;
+    // },
   },
 };
 
