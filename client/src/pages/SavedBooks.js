@@ -59,7 +59,7 @@ const SavedBooks = () => {
 
     try {
       console.log({ id: bookId });
-      await deleteBook({ variables: { id: bookId } });
+      await deleteBook({ variables: { bookId } });
 
       // if (!response.ok) {
       //   throw new Error("something went wrong!");
