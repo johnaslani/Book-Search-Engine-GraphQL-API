@@ -23,7 +23,7 @@ https://desolate-wildwood-42661.herokuapp.com/
 
 ## Questions
 
-For further information see [my GitHub](https://github.com/johnaslani) or [Weather-Dashboard](https://github.com/johnaslani/Book-Search-Engine-GraphQL-API)
+For further information see [my GitHub](https://github.com/johnaslani) or [Book-Search-Engine-GraphQL-API](https://github.com/johnaslani/Book-Search-Engine-GraphQL-API)
 
 
 Should you have any questions, please reach me at [aslani.john@gmail.com](mailto:aslani.john@gmail.com)
