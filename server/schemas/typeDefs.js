@@ -40,7 +40,7 @@ const typeDefs = gql`
       image: String
       link: String
     ): User
-    login(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
   }
 `;
 

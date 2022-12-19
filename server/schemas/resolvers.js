@@ -51,9 +51,7 @@ const resolvers = {
       return user;
     },
     login: async (parent, args) => {
-      const user = await User.findOne({
-        $or: [{ username: args.username }, { email: args.email }],
-      });
+      const user = await User.findOne({ email: args.email });
       if (!user) throw new AuthenticationError("Invalide credentials!");
       const correctPw = await user.isCorrectPassword(args.password);
       if (!correctPw) throw new AuthenticationError("Invalide credentials!");

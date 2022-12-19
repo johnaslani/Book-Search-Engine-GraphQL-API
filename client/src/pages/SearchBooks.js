@@ -73,7 +73,7 @@ const SearchBooks = () => {
     console.log(bookToSave);
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    console.log({ ...bookToSave });
     if (!token) {
       return false;
     }
